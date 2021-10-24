@@ -1,0 +1,65 @@
+import java.math.*;
+import java.util.*;
+import java.security.*;
+import java.io.*;
+
+  public class Main { // source code: http://faculty.washington.edu/moishe/javademos/Security/ElGamal.java
+    public static void main(String[] args) throws IOException
+    {
+        // source http://faculty.washington.edu/moishe/javademos/Security/ElGamal.java
+        // from https://stackoverflow.com/questions/63839020/el-gamal-encryption-of-clear-text-not-numbers-not-woring
+        long beforeUsedMem=Runtime.getRuntime().totalMemory()-Runtime.getRuntime().freeMemory();
+        System.out.println("El Gamal encryption of clear Text\n");
+        String msg = "98765";
+        BigInteger p, b, c, secretKey;
+        Random sc = new SecureRandom();
+        secretKey = new BigInteger("12345678901234567890");
+        //
+        // public key calculation
+        //
+        System.out.println("secretKey = " + secretKey);
+        p = BigInteger.probablePrime(64, sc);
+        b = new BigInteger("3");
+        c = b.modPow(secretKey, p);
+        System.out.println("p = " + p);
+        System.out.println("b = " + b);
+        System.out.println("c = " + c);
+        //
+        // Encryption
+        //
+        long start1 = System.nanoTime(); // my code
+        System.out.print("Enter your Big Number message --> ");
+        //String s = Tools.getString();
+        String s = msg;
+        BigInteger X = new BigInteger(s);
+        BigInteger r = new BigInteger(64, sc);
+        BigInteger EC = X.multiply(c.modPow(r, p)).mod(p);
+        BigInteger brmodp = b.modPow(r, p);
+        System.out.println("Plaintext = " + X);
+        System.out.println("\nEncryption");
+        System.out.println("r = " + r);
+        System.out.println("EC = " + EC);
+        System.out.println("b^r mod p = " + brmodp);
+        long end1 = System.nanoTime(); // my code
+        //
+        // Decryption
+        //
+        long start2 = System.nanoTime();
+        System.out.println("\nDecryption");
+        BigInteger crmodp = brmodp.modPow(secretKey, p);
+        BigInteger d = crmodp.modInverse(p);
+        BigInteger ad = d.multiply(EC).mod(p);
+        System.out.println("c^r mod p = " + crmodp);
+        System.out.println("d = " + d);
+        System.out.println("Alice decodes: " + ad + "\n");
+        long end2 = System.nanoTime(); // my code
+    
+        long afterUsedMem=Runtime.getRuntime().totalMemory()-Runtime.getRuntime().freeMemory(); 
+        long actualMemUsed = afterUsedMem-beforeUsedMem;
+        actualMemUsed = actualMemUsed / 1000;    
+        System.out.println("Elapsed Encryption Time in Nanoseconds: "+ (end1-start1));
+        System.out.println("Elapsed Decryption Time in Nanoseconds: "+ (end2-start2));
+        System.out.println("Memory Used in KB: " + actualMemUsed);
+    }
+}
+
