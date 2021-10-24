@@ -1,0 +1,45 @@
+import javax.crypto.Cipher;
+import javax.crypto.spec.SecretKeySpec;
+import java.util.Arrays;
+import java.time.Duration;
+import java.time.Instant;
+
+public class Blowfish {
+    class Main {  // source code: https://www.source-code.biz/snippets/java/9.htm
+        static public void main (String args[]) throws Exception {
+          System.out.println("test");
+          long beforeUsedMem=Runtime.getRuntime().totalMemory()-Runtime.getRuntime().freeMemory();
+          long start1 = System.nanoTime(); // my code doesnt work
+           byte[] key = {0x11,0x22,0x33,0x44};
+           byte[] plainData = {0x55,(byte)0xaa,0x12,0x34,0x56,0x78,(byte)0x9a,(byte)0xbc};
+           byte[] encryptedData = new byte[8];
+           encrypt (plainData,encryptedData,key);
+           long end1 = System.nanoTime(); // my code doesnt work 
+           long start2 = System.nanoTime(); // my code doesnt work
+           byte[] decryptedData = new byte[8];
+           decrypt (encryptedData,decryptedData,key);
+           long end2 = System.nanoTime(); // my code doesnt work 
+           if (!Arrays.equals(plainData,decryptedData)) throw new Exception ("Decrypted data not equal.");
+           System.out.println ("ok"); 
+           System.out.println("test");   
+           long afterUsedMem=Runtime.getRuntime().totalMemory()-Runtime.getRuntime().freeMemory(); 
+            long actualMemUsed = afterUsedMem-beforeUsedMem;
+            actualMemUsed = actualMemUsed / 1000;  
+        System.out.println("Elapsed Encryption Time in Nanoseconds: "+ (end1-start1));
+        System.out.println("Elapsed Decryption Time in Nanoseconds: "+ (end2-start2));
+        System.out.println("Memory Used in KB: " + actualMemUsed);
+        }
+        private static void encrypt (byte[] input, byte[] output, byte[] key) throws Exception {
+           crypt (Cipher.ENCRYPT_MODE,input,output,key); }
+        
+        private static void decrypt (byte[] input, byte[] output, byte[] key) throws Exception {
+           crypt (Cipher.DECRYPT_MODE,input,output,key); 
+           }
+        
+        private static void crypt (int opmode, byte[] input, byte[] output, byte[] key) throws Exception {
+           Cipher cipher = Cipher.getInstance("Blowfish/ECB/NoPadding");
+           SecretKeySpec keySpec = new SecretKeySpec(key,"Blowfish");
+           cipher.init (opmode, keySpec);
+           cipher.doFinal (input,0,input.length,output); } 
+         }
+}
