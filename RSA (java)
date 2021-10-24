@@ -14,7 +14,7 @@ import javax.crypto.Cipher;
         public static void main(String[] args) throws Exception {
             String plainText = "test";
      
-            // Generate public and private keys using RSA
+            // Generate public and private keys 
             Map<String, Object> keys = getRSAKeys();
      
             PrivateKey privateKey = (PrivateKey) keys.get("private");
