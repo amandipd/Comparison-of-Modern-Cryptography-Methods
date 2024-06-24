@@ -3,7 +3,7 @@ import java.util.*;
 import java.security.*;
 import java.io.*;
 
-  public class Main { // source code: http://faculty.washington.edu/moishe/javademos/Security/ElGamal.java
+  public class Main { // src: http://faculty.washington.edu/moishe/javademos/Security/ElGamal.java
     public static void main(String[] args) throws IOException
     {
         // source http://faculty.washington.edu/moishe/javademos/Security/ElGamal.java
