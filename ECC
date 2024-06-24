@@ -1,6 +1,6 @@
 
 public class ECC {
-    class Main{ // source: https://www.geeksforgeeks.org/implementation-diffie-hellman-algorithm/
+    class Main{ // src: https://www.geeksforgeeks.org/implementation-diffie-hellman-algorithm/
         {
      
         // Power function to return value of a ^ b mod P
