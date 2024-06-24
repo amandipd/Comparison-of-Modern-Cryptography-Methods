@@ -11,7 +11,7 @@ import javax.crypto.Cipher;
 
     class Main {
    
-        public static void main(String[] args) throws Exception { // source code: https://www.quickprogrammingtips.com/java/java-asymmetric-encryption-decryption-example-with-rsa.html
+        public static void main(String[] args) throws Exception { // src: https://www.quickprogrammingtips.com/java/java-asymmetric-encryption-decryption-example-with-rsa.html
             String plainText = "test";
      
             // Generate public and private keys 
