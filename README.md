@@ -1,10 +1,4 @@
-# Comparison-of-Modern-Cryptography-Methods-Source-Code-
-The code in this repository contains source code for RSA, ECC, ElGamal, as well as Blowfish. I gathered source code for the algorithms from the following links below:
+# Comparison of Modern Cryptography Methods
+Read the paper here: [https://www.preprints.org/manuscript/202207.0389/v2](https://www.preprints.org/manuscript/202207.0389/v2)
 
-RSA: https://www.quickprogrammingtips.com/java/java-asymmetric-encryption-decryption-example-with-rsa.html
-
-ECC: https://www.geeksforgeeks.org/implementation-diffie-hellman-algorithm/
-
-ElGamal: http://faculty.washington.edu/moishe/javademos/Security/ElGamal.java
-
-Blowfish: https://www.source-code.biz/snippets/java/9.htm
+The code in this repository contains the implementations of the algorithms in the paper with memory profiling, encryption, and decryption timing.
