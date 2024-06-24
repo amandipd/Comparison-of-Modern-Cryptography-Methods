@@ -5,7 +5,7 @@ import java.time.Duration;
 import java.time.Instant;
 
 public class Blowfish {
-    class Main {  // source code: https://www.source-code.biz/snippets/java/9.htm
+    class Main {  // src: https://www.source-code.biz/snippets/java/9.htm
         static public void main (String args[]) throws Exception {
           System.out.println("test");
           long beforeUsedMem=Runtime.getRuntime().totalMemory()-Runtime.getRuntime().freeMemory();
@@ -42,4 +42,4 @@ public class Blowfish {
            cipher.init (opmode, keySpec);
            cipher.doFinal (input,0,input.length,output); } 
          }
-}
+} 
